@@ -1,4 +1,6 @@
 import React from 'react';
+import BookDisplay from './BookDisplay.js';
+import axios from 'axios';
 
 class BestBooks extends React.Component {
   constructor(props) {
@@ -8,18 +10,23 @@ class BestBooks extends React.Component {
     }
   }
 
-  /* TODO: Make a GET request to your API to fetch all the books from the database  */
+  componentDidMount = () => {
+    axios.get("http://localhost:3032/books").then((response) => {
+      this.setState({
+        books: response.data
+      });
+    });
+  }
 
   render() {
-
-    /* TODO: render all the books in a Carousel */
-
     return (
       <>
         <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
 
         {this.state.books.length ? (
-          <p>Book Carousel coming soon</p>
+          this.state.books.map((book) => {
+            return <BookDisplay key={book._id} title={book.title} description={book.description} status={book.status} />
+          })
         ) : (
           <h3>No Books Found :(</h3>
         )}

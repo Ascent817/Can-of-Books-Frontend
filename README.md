@@ -17,7 +17,8 @@ This part of the app uses React for UI and Axios to query the API.
 
 ## Change Log
 
-8-08-2022 2:00 PM - Initial project set-up was comepleted
+8-08-2022 2:00 PM - Initial project set-up completed
+8-08-2022 3:00 PM - Database storage set-up
 
 ## Estimates
 
@@ -27,6 +28,16 @@ Start: 1 PM
 
 Estimated time to completion: 1 hour
 
+Actual time to comepletion: 45 minutes
+
+End: 1:45 PM
+
+### Feature 2: Set up book storage
+
+Start: 2 PM
+
+Estimated time to completion: 1 hour
+
 Actual time to comepletion: 1 hour
 
-End: 2 PM
+End: 3 PM
