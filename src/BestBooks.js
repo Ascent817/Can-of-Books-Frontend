@@ -29,7 +29,7 @@ class BestBooks extends React.Component {
       show: false
     });
   };
-  
+
   handleShow = () => {
     this.setState({
       show: true
@@ -44,7 +44,19 @@ class BestBooks extends React.Component {
         title: event.target.title.value,
         description: event.target.description.value,
         status: event.target.status.value
-      }
+      },
+      books: [...this.state.books, {
+        title: event.target.title.value,
+        description: event.target.description.value,
+        status: event.target.status.value,
+        _id: Math.random()
+      }]
+    });
+
+    axios.post("https://can-of-books-backend-mikevarun.herokuapp.com/books", {
+      title: event.target.title.value,
+      description: event.target.description.value,
+      status: event.target.status.value
     });
   };
 
