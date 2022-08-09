@@ -11,7 +11,7 @@ class BestBooks extends React.Component {
   }
 
   componentDidMount = () => {
-    axios.get("http://localhost:3032/books").then((response) => {
+    axios.get("https://can-of-books-backend-mikevarun.herokuapp.com/books").then((response) => {
       this.setState({
         books: response.data
       });
