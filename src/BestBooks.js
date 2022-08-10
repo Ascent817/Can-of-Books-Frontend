@@ -67,19 +67,21 @@ class BestBooks extends React.Component {
       <>
         <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
 
-        {this.state.books.length ? (
-          this.state.books.map((book) => {
-            return <BookDisplay
-              key={book._id}
-              title={book.title}
-              description={book.description}
-              status={book.status}
-            />
-          })
-        ) : (
-          <h3>No Books Found :( </h3>
+        <div className="book-grid">
+          {this.state.books.length ? (
+            this.state.books.map((book) => {
+              return <BookDisplay
+                key={book._id}
+                title={book.title}
+                description={book.description}
+                status={book.status}
+              />
+            })
+          ) : (
+            <h3>No Books Found :( </h3>
 
-        )}
+          )}
+        </div>
         <Button variant="primary" onClick={this.handleShow}>
           Add book
         </Button>
