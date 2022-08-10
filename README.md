@@ -54,8 +54,6 @@ What to do if someone is taking  over and not letting others contribute - commun
 Chosen approach for the challenge of building an application with partners of differing skill level and understanding - enable harmonious collaboration while leaving room and giving opportunity for each other to learn
 
 
-
-
 ## Estimates
 
 ### Feature 1: Set up project
