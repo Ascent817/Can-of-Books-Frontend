@@ -3,10 +3,38 @@
     background-color: lavender;
     border-radius: 10px;
     padding: 10px;
+    overflow-y: scroll;
 }
 
 .book-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(6, 40vh);
+    grid-template-rows: repeat(6, 50vh);
+}
+
+/* ===== Scrollbar CSS ===== */
+
+
+/* Firefox */
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #b8b8b8 #ffffff;
+}
+
+
+/* Chrome, Edge, and Safari */
+
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #b8b8b8;
+    border-radius: 10px;
 }

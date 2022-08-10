@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 
-export class CreateBookModal extends React.Component {
+export class UpdateBookModal extends React.Component {
   render() {
     return (
-      <Modal show={this.props.show} onHide={this.props.handleClose}>
+      <Modal show={this.props.updateShow} onHide={this.props.handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Add a book</Modal.Title>
         </Modal.Header>
@@ -37,4 +37,4 @@ export class CreateBookModal extends React.Component {
   }
 }
 
-export default CreateBookModal;
+export default UpdateBookModal;

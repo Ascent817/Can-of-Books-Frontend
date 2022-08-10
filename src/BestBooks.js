@@ -80,6 +80,7 @@ class BestBooks extends React.Component {
     try {
       let url = `${server}/${book._id}`;
       let updatedBook = await axios.put(url, book);
+      delete updatedBook._id;
       let updatedBooks = this.state.cats.map(currentBook => {
         return currentBook._id === book._id ? updatedBook.data : currentBook
       });

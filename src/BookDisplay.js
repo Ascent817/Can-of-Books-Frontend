@@ -1,8 +1,28 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import UpdateBookModal from './UpdateBookModal.js';
 import './styles.css';
 
 class BookDisplay extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      show: false
+    }
+  }
+
+  handleClose = () => {
+    this.setState({
+      show: false
+    });
+  };
+
+  handleShow = () => {
+    this.setState({
+      show: true
+    });
+  };
+
   render() {
     return (
       <div className="book-display">
@@ -10,12 +30,8 @@ class BookDisplay extends React.Component {
         <p>{this.props.description}</p>
         <p>{this.props.status}</p>
         <Button variant="danger" onClick={() => this.props.deleteBook(this.props.id)}>Delete</Button>{' '}
-        <Button variant="warning" onClick={() => this.props.updateBook({
-          title: this.props.title,
-          description: this.props.description,
-          status: this.props.status,
-          _id: this.props.id
-        })}>Update</Button>
+        <Button variant="warning" onClick={this.handleShow}>Update</Button>
+        <UpdateBookModal show={this.state.show} handleClose={this.handleClose} handleSubmit={this.handleSubmit}></UpdateBookModal>
       </div>
     )
   }
