@@ -75,3 +75,24 @@ Estimated time to completion: 1 hour
 Actual time to comepletion: 1 hour
 
 End: 3 PM
+
+### Feature 3: Delete
+
+Start: 1 PM
+
+Estimated time to completion: 1 hour
+
+Actual time to comepletion: 30mins
+
+End: 1:45pm
+
+### Feature 4: Update
+
+Start: 2 PM
+
+Estimated time to completion: 1 hour
+
+Actual time to comepletion: 1.5 hours
+
+End: 3:30pm
+
