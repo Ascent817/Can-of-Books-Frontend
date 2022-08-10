@@ -1,12 +1,12 @@
 .book-display {
     margin: 10px;
-    background-color: beige;
+    background-color: lavender;
     border-radius: 10px;
-    padding: 5px;
+    padding: 10px;
 }
 
 .book-grid {
     display: grid;
-    grid-template-columns: 20vw 20vw 20vw;
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(6, 40vh);
 }

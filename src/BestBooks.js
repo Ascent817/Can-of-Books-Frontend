@@ -1,9 +1,11 @@
 import React from 'react';
 import BookDisplay from './BookDisplay.js';
 import axios from 'axios';
-import { Button, Modal, Form } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import { CreateBookModal } from './CreateBookModal.js';
 
 const server = "https://can-of-books-backend-mikevarun.herokuapp.com/books";
+
 class BestBooks extends React.Component {
   constructor(props) {
     super(props);
@@ -62,6 +64,31 @@ class BestBooks extends React.Component {
     });
   };
 
+  deleteBook = async (id) => {
+    try {
+      let url = `${server}/${id}`;
+      await axios.delete(url);
+      this.setState({
+        books: this.state.books.filter(book => book._id !== id)
+      });
+    } catch (error) {
+      alert("The delete request was malformed. Please try again later.");
+    }
+  };
+
+  updateBook = async (book) => {
+    try {
+      let url = `${server}/${book._id}`;
+      let updatedBook = await axios.put(url, book);
+      let updatedBooks = this.state.cats.map(currentBook => {
+        return currentBook._id === book._id ? updatedBook.data : currentBook
+      });
+      this.setState({ books: updatedBooks });
+    } catch (error) {
+      alert("Malformed update request. Please try again later.");
+    }
+  };
+
   render() {
     return (
       <>
@@ -71,10 +98,13 @@ class BestBooks extends React.Component {
           {this.state.books.length ? (
             this.state.books.map((book) => {
               return <BookDisplay
+                id={book._id}
                 key={book._id}
                 title={book.title}
                 description={book.description}
                 status={book.status}
+                deleteBook={this.deleteBook}
+                updateBook={this.updateBook}
               />
             })
           ) : (
@@ -86,35 +116,7 @@ class BestBooks extends React.Component {
           Add book
         </Button>
 
-        <Modal show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Add a book</Modal.Title>
-          </Modal.Header>
-          <Form onSubmit={this.handleSubmit}>
-            <Modal.Body>
-              <Form.Group controlId="title">
-                <Form.Label>Title</Form.Label>
-                <Form.Control type="text" />
-              </Form.Group>
-              <Form.Group controlId="description">
-                <Form.Label>Description</Form.Label>
-                <Form.Control type="text" />
-              </Form.Group>
-              <Form.Group controlId="status">
-                <Form.Label>Status</Form.Label>
-                <Form.Control type="text" />
-              </Form.Group>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={this.handleClose}>
-                Close
-              </Button>
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
-            </Modal.Footer>
-          </Form>
-        </Modal>
+        <CreateBookModal show={this.state.show} handleClose={this.handleClose} handleSubmit={this.handleSubmit}></CreateBookModal>
       </>
     )
   }
