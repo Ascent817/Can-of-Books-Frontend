@@ -2,6 +2,8 @@ import React from 'react';
 import BookDisplay from './BookDisplay.js';
 import axios from 'axios';
 import { Button, Modal, Form } from 'react-bootstrap';
+
+const server = "https://can-of-books-backend-mikevarun.herokuapp.com/books";
 class BestBooks extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +19,7 @@ class BestBooks extends React.Component {
   }
 
   componentDidMount = () => {
-    axios.get("https://can-of-books-backend-mikevarun.herokuapp.com/books").then((response) => {
+    axios.get(server).then((response) => {
       this.setState({
         books: response.data
       });
@@ -67,19 +69,24 @@ class BestBooks extends React.Component {
 
         {this.state.books.length ? (
           this.state.books.map((book) => {
-            return <BookDisplay key={book._id} title={book.title} description={book.description} status={book.status} />
+            return <BookDisplay
+              key={book._id}
+              title={book.title}
+              description={book.description}
+              status={book.status}
+            />
           })
         ) : (
           <h3>No Books Found :( </h3>
 
         )}
         <Button variant="primary" onClick={this.handleShow}>
-          Launch demo modal
+          Add book
         </Button>
 
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>Add a book</Modal.Title>
           </Modal.Header>
           <Form onSubmit={this.handleSubmit}>
             <Modal.Body>
