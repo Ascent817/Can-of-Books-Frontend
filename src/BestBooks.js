@@ -2,7 +2,6 @@ import React from 'react';
 import BookDisplay from './BookDisplay.js';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
-import { CreateBookModal } from './CreateBookModal.js';
 
 const server = "https://can-of-books-backend-mikevarun.herokuapp.com/books";
 
@@ -76,12 +75,19 @@ class BestBooks extends React.Component {
     }
   };
 
-  updateBook = async (book) => {
+  updateBook = async (event) => {
+    event.preventDefault();
+    let book = {
+      title: event.target.title.value,
+      description: event.target.description.value,
+      status: event.target.status.value,
+      _id: event.target._id.value
+    };
+
     try {
       let url = `${server}/${book._id}`;
       let updatedBook = await axios.put(url, book);
-      delete updatedBook._id;
-      let updatedBooks = this.state.cats.map(currentBook => {
+      let updatedBooks = this.state.books.map(currentBook => {
         return currentBook._id === book._id ? updatedBook.data : currentBook
       });
       this.setState({ books: updatedBooks });
@@ -116,8 +122,6 @@ class BestBooks extends React.Component {
         <Button variant="primary" onClick={this.handleShow}>
           Add book
         </Button>
-
-        <CreateBookModal show={this.state.show} handleClose={this.handleClose} handleSubmit={this.handleSubmit}></CreateBookModal>
       </>
     )
   }

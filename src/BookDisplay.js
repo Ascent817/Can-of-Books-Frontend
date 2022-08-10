@@ -24,14 +24,22 @@ class BookDisplay extends React.Component {
   };
 
   render() {
+    let { title, description, status, id } = this.props;
+    let book = {
+      title: title,
+      description: description,
+      status: status,
+      _id: id
+    };
+
     return (
       <div className="book-display">
-        <h3>{this.props.title}</h3>
-        <p>{this.props.description}</p>
-        <p>{this.props.status}</p>
-        <Button variant="danger" onClick={() => this.props.deleteBook(this.props.id)}>Delete</Button>{' '}
+        <h3>{title}</h3>
+        <p>{description}</p>
+        <p>{status}</p>
+        <Button variant="danger" onClick={() => this.props.deleteBook(id)}>Delete</Button>{' '}
         <Button variant="warning" onClick={this.handleShow}>Update</Button>
-        <UpdateBookModal show={this.state.show} handleClose={this.handleClose} handleSubmit={this.handleSubmit}></UpdateBookModal>
+        <UpdateBookModal show={this.state.show} book={book} updateBook={this.props.updateBook} handleClose={this.handleClose} />
       </div>
     )
   }
